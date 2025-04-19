@@ -12,7 +12,7 @@ let allSockets: User[] = [];
 
 wss.on("connection",(socket)=>{
 
-    socket.on("message",(message)=>{
+    socket.on("message",(message:String)=>{
         //@ts-ignore
         const parsedMessage = JSON.parse(message);
         if(parsedMessage.type == "join"){

@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        jetbrains: ['"JetBrains Mono"', 'monospace'],
+      },
+      colors:{
+        gray:{
+          69:"#2b2b2a"
+        }
+      }
+    }
   },
   plugins: [],
 }
