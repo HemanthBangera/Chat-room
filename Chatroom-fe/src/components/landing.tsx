@@ -9,7 +9,7 @@ const Landing = () => {
     const nameRef = useRef<HTMLInputElement | null>(null);
     const roomidRef = useRef<HTMLInputElement>(null);
     const socketRef = useRef<WebSocket>(null);
-    const [chatinterface,setChatinterface] = useState(false)
+    const [chatinterface,setChatinterface] = useState(true)
 
     useEffect(()=>{
         initializeSocketConnection()
@@ -107,7 +107,28 @@ const Landing = () => {
             </div>
         </div>}
 
-        
+        {
+            chatinterface &&
+            <div className="bg-black h-screen w-screen flex justify-center items-center">
+                    <div className="border-2 border-gray-700  w-2/5 rounded-xl font-jetbrains">
+                    <div className="m-7"> 
+                        <h1 className="text-white text-2xl">Real Time Chat</h1>
+                        <span className="text-gray-500">temporary room that expires after all users exit</span>
+                    </div>
+                    <div className="bg-gray-69 ml-7 mr-7 mt-4 text-gray-300 rounded-md h-12 p-2 flex justify-between items-center">
+                            <span>Room Code:</span>
+                            <span>User:</span>
+                    </div>
+                    <div className="border-2 border-gray-700 h-96 m-7 rounded-md "></div>
+                    <div className="m-7 flex justify-between">
+                        <input type="text" className="w-3/4 h-10 rounded-sm bg-black border-2 border-gray-700 text-white p-2" style={{ caretColor: '#FFFFFF' }} placeholder="Type a message..."/>
+                        <button className="bg-white h-10 w-28 rounded-sm">Send</button>
+                    </div>
+                    </div>
+            </div>
+        }
+
+
         </>
     )
 }
