@@ -1,13 +1,45 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ws_1 = require("ws");
+const zod_1 = require("zod");
 const wss = new ws_1.WebSocketServer({ port: 8000 });
+const MessageParsed = zod_1.z.object({
+    type: zod_1.z.enum(["join", "chat"]),
+    payload: zod_1.z.object({
+        name: zod_1.z.string().optional(),
+        roomid: zod_1.z.string().optional(),
+        message: zod_1.z.string().optional()
+    })
+});
 let allSockets = [];
 wss.on("connection", (socket) => {
+    socket.on("close", () => {
+        var _a;
+        let userRemoved = (_a = allSockets.find((x) => x.socket === socket)) === null || _a === void 0 ? void 0 : _a.name;
+        allSockets = allSockets.filter((user) => user.socket !== socket);
+        console.log(userRemoved + " has left");
+        for (let user of allSockets) {
+            user.socket.send(userRemoved + " has left");
+        }
+    });
     socket.on("message", (message) => {
         var _a, _b;
-        //@ts-ignore
-        const parsedMessage = JSON.parse(message);
+        let tobeparsedMessage;
+        try {
+            //@ts-ignore
+            tobeparsedMessage = JSON.parse(message);
+        }
+        catch (error) {
+            console.log(error);
+        }
+        const validationResult = MessageParsed.safeParse(tobeparsedMessage);
+        if (!validationResult.success) {
+            console.log("Invalid inputs");
+            socket.send("Message violates the defined structure");
+            socket.close();
+            return;
+        }
+        const parsedMessage = validationResult.data;
         if (parsedMessage.type == "join") {
             allSockets.push({
                 roomid: parsedMessage.payload.roomid,

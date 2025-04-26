@@ -9,7 +9,7 @@ const Landing = () => {
     const nameRef = useRef<HTMLInputElement | null>(null);
     const roomidRef = useRef<HTMLInputElement>(null);
     const socketRef = useRef<WebSocket>(null);
-    const [chatinterface,setChatinterface] = useState(true)
+    const [chatinterface,setChatinterface] = useState(false)
 
     useEffect(()=>{
         initializeSocketConnection()
@@ -68,8 +68,13 @@ const Landing = () => {
     }
 
     function groupbyFunctions(){
-        setChatinterface(true);
+        const roomid = roomidRef.current?.value.trim();
+    const name = nameRef.current?.value.trim();
+
+    if (roomid && name) {
         backendCall();
+        setChatinterface(true); 
+    }
     }
 
 

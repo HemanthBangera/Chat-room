@@ -1,4 +1,6 @@
 import { WebSocketServer, WebSocket } from "ws";
+import {z} from "zod";
+
 
 const wss = new WebSocketServer({port:8000});
 
@@ -8,18 +10,59 @@ interface User{
     socket : WebSocket,
 }
 
+const MessageParsed = z.object({
+    type :z.enum(["join","chat"]),
+    payload : z.object({
+        name: z.string().optional(),
+        roomid: z.string().optional(),
+        message:z.string().optional()
+    })
+})
+
+
+
 let allSockets: User[] = [];
 
 wss.on("connection",(socket)=>{
 
+    socket.on("close",()=>{
+        let userRemoved = allSockets.find((x) => x.socket === socket)?.name;
+        allSockets = allSockets.filter((user)=>user.socket!==socket);
+        console.log(userRemoved+" has left")
+        for(let user of allSockets){
+            user.socket.send(userRemoved+" has left")
+        }
+    })
+
     socket.on("message",(message:String)=>{
-        //@ts-ignore
-        const parsedMessage = JSON.parse(message);
+        let tobeparsedMessage:any;
+
+
+        try{
+            //@ts-ignore
+            tobeparsedMessage = JSON.parse(message);
+        }
+        catch(error){
+            console.log(error)
+        }
+
+        const validationResult = MessageParsed.safeParse(tobeparsedMessage);
+
+        if(!validationResult.success){
+            console.log("Invalid inputs");
+            socket.send("Message violates the defined structure");
+            socket.close();
+            return
+        }
+
+        const parsedMessage = validationResult.data;
+
+
         if(parsedMessage.type == "join"){
             allSockets.push({
-                roomid:parsedMessage.payload.roomid,
+                roomid:parsedMessage.payload.roomid!,
                 socket,
-                name:parsedMessage.payload.name
+                name:parsedMessage.payload.name!
             })
             console.log("User joined the room: "+parsedMessage.payload.roomid)
         }
