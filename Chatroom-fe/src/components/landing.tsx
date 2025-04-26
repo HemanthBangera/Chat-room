@@ -5,9 +5,10 @@ import { useState } from "react";
 const Landing = () => {
 
     const [displayroom, setDisplayroom] = useState(false);
-    const [roomid,setRoomid] = useState<string>()
+    const [createdRoomid,setCreatedRoomid] = useState<string>()
     const nameRef = useRef<HTMLInputElement | null>(null);
     const roomidRef = useRef<HTMLInputElement>(null);
+    const messageRef = useRef<HTMLInputElement>(null);
     const socketRef = useRef<WebSocket>(null);
     const [chatinterface,setChatinterface] = useState(false)
 
@@ -34,7 +35,7 @@ const Landing = () => {
     
     function render():void{
         setDisplayroom(true);
-        setRoomid(roomidgenerator())
+        setCreatedRoomid(roomidgenerator())
     }
 
     function backendCall(){
@@ -69,12 +70,30 @@ const Landing = () => {
 
     function groupbyFunctions(){
         const roomid = roomidRef.current?.value.trim();
-    const name = nameRef.current?.value.trim();
+        const name = nameRef.current?.value.trim();
+        let isValidRoomid = (id:string) =>  /^[A-Z0-9]{6}$/.test(id);
 
-    if (roomid && name) {
-        backendCall();
-        setChatinterface(true); 
+        if (roomid && name && isValidRoomid(roomid)) {
+            backendCall();
+            setChatinterface(true); 
+        }
     }
+
+    function sendMessage(){
+        const message = messageRef.current!.value.trim();
+        if(message&&message.length>0){
+            if(socketRef.current?.readyState === WebSocket.OPEN){
+                socketRef.current.send(
+                    JSON.stringify({
+                        type:"chat",
+                        payload: { message }
+                    })
+                )
+                messageRef.current!.value = ""
+            }
+        }
+
+
     }
 
 
@@ -106,7 +125,7 @@ const Landing = () => {
                 {
                     displayroom && <div className="bg-gray-69 h-40 rounded p-2">
                         <div className="text-gray-500 flex justify-center">Share this code with your friends</div>
-                        <div className="text-3xl flex justify-center mt-4 font-bold text-white">{roomid}</div>
+                        <div className="text-3xl flex justify-center mt-4 font-bold text-white">{createdRoomid}</div>
                     </div>
                 }
             </div>
@@ -126,8 +145,8 @@ const Landing = () => {
                     </div>
                     <div className="border-2 border-gray-700 h-96 m-7 rounded-md "></div>
                     <div className="m-7 flex justify-between">
-                        <input type="text" className="w-3/4 h-10 rounded-sm bg-black border-2 border-gray-700 text-white p-2" style={{ caretColor: '#FFFFFF' }} placeholder="Type a message..."/>
-                        <button className="bg-white h-10 w-28 rounded-sm">Send</button>
+                        <input type="text" className="w-3/4 h-10 rounded-sm bg-black border-2 border-gray-700 text-white p-2" ref={messageRef} style={{ caretColor: '#FFFFFF' }} placeholder="Type a message..."/>
+                        <button className="bg-white h-10 w-28 rounded-sm" onClick={sendMessage}>Send</button>
                     </div>
                     </div>
             </div>

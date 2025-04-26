@@ -25,8 +25,10 @@ let allSockets: User[] = [];
 
 wss.on("connection",(socket)=>{
 
+    let userCount = allSockets.length;
+
     socket.on("close",()=>{
-        let userRemoved = allSockets.find((x) => x.socket === socket)?.name;
+        let userRemoved = allSockets.find((x) => x.socket === socket)?.name;        
         allSockets = allSockets.filter((user)=>user.socket!==socket);
         console.log(userRemoved+" has left")
         for(let user of allSockets){

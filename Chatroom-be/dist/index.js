@@ -13,6 +13,7 @@ const MessageParsed = zod_1.z.object({
 });
 let allSockets = [];
 wss.on("connection", (socket) => {
+    let userCount = allSockets.length;
     socket.on("close", () => {
         var _a;
         let userRemoved = (_a = allSockets.find((x) => x.socket === socket)) === null || _a === void 0 ? void 0 : _a.name;
