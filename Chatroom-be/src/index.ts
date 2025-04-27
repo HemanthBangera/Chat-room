@@ -25,20 +25,30 @@ let allSockets: User[] = [];
 
 wss.on("connection",(socket)=>{
 
-    let userCount = allSockets.length;
-
     socket.on("close",()=>{
         let userRemoved = allSockets.find((x) => x.socket === socket)?.name;        
         allSockets = allSockets.filter((user)=>user.socket!==socket);
         console.log(userRemoved+" has left")
         for(let user of allSockets){
             user.socket.send(JSON.stringify({
-                name:userRemoved,
-                message:"has left"
+                type:"left",
+                payload:{
+                    name:userRemoved,
+                }
             }))
         }
-    })
+        for (let user of allSockets) {
+            user.socket.send(JSON.stringify({
+              type: "usercount",
+              payload: {
+                count: allSockets.filter(u => u.roomid === user.roomid).length
+              }
+            }));
+          }
+          
 
+    })
+    
     socket.on("message",(message:String)=>{
         let tobeparsedMessage:any;
 
@@ -69,6 +79,29 @@ wss.on("connection",(socket)=>{
                 name:parsedMessage.payload.name!
             })
             console.log("User joined the room: "+parsedMessage.payload.roomid)
+
+            for(let i=0;i<allSockets.length;i++){
+                if(allSockets[i].roomid === parsedMessage.payload.roomid){
+                    allSockets[i].socket.send(JSON.stringify({
+                        type:"join",
+                        payload:{
+                            name:parsedMessage.payload.name,
+                        }
+                        
+                    }))
+                }
+            }
+            for (let user of allSockets) {
+                if(user.roomid === parsedMessage.payload.roomid){
+                user.socket.send(JSON.stringify({
+                  type: "usercount",
+                  payload: {
+                    count: allSockets.filter(u => u.roomid === user.roomid).length
+                  }
+                }));
+              }
+            }
+              
         }
 
         if(parsedMessage.type == "chat"){
