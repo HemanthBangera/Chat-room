@@ -126,12 +126,12 @@ const Landing = () => {
   return (
     <>
       {!chatinterface && (
-        <div className="bg-black h-screen w-screen flex justify-center items-center">
-          <div className="border-2 border-gray-700 rounded-xl p-8 bg-black w-1/2 font-jetbrains flex flex-col gap-2 justify-between">
+        <div className="bg-black min-h-screen w-screen flex justify-center items-center p-4">
+          <div className="border-2 border-gray-700 rounded-xl p-10 bg-black w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl font-jetbrains flex flex-col gap-4">
             <div>
-              <h2 className="text-3xl  text-white mb-2">Real time chat</h2>
-              <span className="text-gray-500">
-                temporary room that expires after all users exit
+              <h2 className="text-2xl sm:text-3xl text-white mb-2">Real time chat</h2>
+              <span className="text-gray-500 text-sm sm:text-base">
+                Temporary room that expires after all users exit
               </span>
             </div>
             <div className="flex items-center justify-center">
@@ -150,26 +150,26 @@ const Landing = () => {
                 placeholder="Enter Your Room Number"
               />
             </div>
-            <div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
               <input
                 type="text"
-                className="bg-black border-2 border-gray-700 rounded h-10 w-3/4 pl-2 text-white"
+                className="bg-black border-2 border-gray-700 rounded h-10 w-full pl-2 text-white"
                 ref={nameRef}
                 placeholder="Enter your name"
               />
               <button
-                className="bg-white w-36 ml-7 h-10 rounded font-bold"
+                className="bg-white w-full sm:w-36 h-10 rounded font-bold"
                 onClick={groupbyFunctions}
               >
                 Join Room
               </button>
             </div>
             {displayroom && (
-              <div className="bg-gray-69 h-40 rounded p-2">
-                <div className="text-gray-500 flex justify-center">
+              <div className="bg-gray-69 h-32 sm:h-40 rounded p-2 flex flex-col justify-center items-center">
+                <div className="text-gray-400 text-sm sm:text-base mb-2">
                   Share this code with your friends
                 </div>
-                <div className="text-3xl flex justify-center mt-4 font-bold text-white">
+                <div className="text-2xl sm:text-3xl font-bold text-white">
                   {createdRoomid}
                 </div>
               </div>
@@ -177,21 +177,21 @@ const Landing = () => {
           </div>
         </div>
       )}
-
+  
       {chatinterface && (
-        <div className="bg-black h-screen w-screen flex justify-center items-center">
-          <div className="border-2 border-gray-700  w-2/5 rounded-xl font-jetbrains">
-            <div className="m-7">
-              <h1 className="text-white text-2xl">Real Time Chat</h1>
-              <span className="text-gray-500">
-                temporary room that expires after all users exit
+        <div className="bg-black min-h-screen w-screen flex justify-center items-center p-4">
+          <div className="border-2 border-gray-700 w-full max-w-2xl lg:max-w-3xl rounded-xl font-jetbrains">
+            <div className="m-4 sm:m-7">
+              <h1 className="text-white text-xl sm:text-2xl">Real Time Chat</h1>
+              <span className="text-gray-500 text-sm sm:text-base">
+                Temporary room that expires after all users exit
               </span>
             </div>
-            <div className="bg-gray-69 ml-7 mr-7 mt-4 text-gray-300 rounded-md h-12 p-2 flex justify-between items-center">
-              <span>Room Code:{chatRoomId}</span>
-              <span>User:{userCount}</span>
+            <div className="bg-gray-69 mx-4 sm:mx-7 mt-4 text-gray-300 rounded-md h-12 p-2 flex justify-between items-center text-sm sm:text-base">
+              <span>Room Code: {chatRoomId}</span>
+              <span>Users: {userCount}</span>
             </div>
-            <div className="border-2 border-gray-700 h-96 m-7 rounded-md text-white overflow-y-auto">
+            <div className="border-2 border-gray-700 h-80 sm:h-96 m-4 sm:m-7 rounded-md text-white overflow-y-auto">
               {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -204,9 +204,9 @@ const Landing = () => {
                   }`}
                 >
                   <div
-                    className={`bg-white rounded-md inline-block max-w-xs break-words p-2 m-1 ${
+                    className={`rounded-md inline-block max-w-[80%] break-words p-2 m-1 ${
                       msg.name === "system"
-                        ? "bg-transparent text-gray-400 text-sm"
+                        ? "bg-transparent text-gray-400 text-xs sm:text-sm"
                         : "bg-white text-black"
                     }`}
                   >
@@ -216,23 +216,22 @@ const Landing = () => {
               ))}
               <div ref={endMessageRef}></div>
             </div>
-            <div className="m-7 flex justify-between">
+            <div className="m-4 sm:m-7 flex flex-col sm:flex-row gap-2">
               <input
                 type="text"
-                className="w-3/4 h-10 rounded-sm bg-black border-2 border-gray-700 text-white p-2"
+                className="w-full h-10 rounded-sm bg-black border-2 border-gray-700 text-white p-2"
                 ref={messageRef}
                 style={{ caretColor: "#FFFFFF" }}
                 placeholder="Type a message..."
                 onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      sendMessage();
-                    }
-                  }}
+                  if (e.key === "Enter") {
+                    sendMessage();
+                  }
+                }}
               />
               <button
-                className="bg-white h-10 w-28 rounded-sm"
+                className="bg-white h-10 w-full sm:w-28 rounded-sm"
                 onClick={sendMessage}
-                
               >
                 Send
               </button>
@@ -242,6 +241,7 @@ const Landing = () => {
       )}
     </>
   );
+  
 };
 
 export default Landing;
