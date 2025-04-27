@@ -9,8 +9,11 @@ const Landing = () => {
     const nameRef = useRef<HTMLInputElement | null>(null);
     const roomidRef = useRef<HTMLInputElement>(null);
     const messageRef = useRef<HTMLInputElement>(null);
+    const endMessageRef = useRef<HTMLDivElement>(null);
     const socketRef = useRef<WebSocket>(null);
+    const [username,setUsername] = useState<string>();
     const [chatinterface,setChatinterface] = useState(false)
+    const [messages,setmessages] = useState<{name:string,message:string}[]>([])
 
     useEffect(()=>{
         initializeSocketConnection()
@@ -21,6 +24,12 @@ const Landing = () => {
             }
         }
     },[])
+
+    useEffect(()=>{
+        if (endMessageRef.current){
+            endMessageRef.current.scrollIntoView({behavior:"smooth"});
+        }
+    },[messages])
 
     function roomidgenerator(length: number=6):string{
         let characters = 'QWERTYUIOPASDFGHJKLZXCVBNM789456123';
@@ -48,6 +57,7 @@ const Landing = () => {
                     payload: { name, roomid }
                 })
             )
+            setUsername(name)
             console.log("Sent the join message");
         } else {
             console.error("WebSocket not open yet");
@@ -61,7 +71,8 @@ const Landing = () => {
             console.log("Connected to the websocket server");
         }
         socketRef.current.onmessage = (event)=>{
-            console.log("Received message:",event.data)
+            const receivedMessages = JSON.parse(event.data)
+            setmessages((prevmessage)=>[...prevmessage,receivedMessages])
         }
         socketRef.current.onerror = (error) =>{
             console.log("Received error:",error)
@@ -143,7 +154,14 @@ const Landing = () => {
                             <span>Room Code:</span>
                             <span>User:</span>
                     </div>
-                    <div className="border-2 border-gray-700 h-96 m-7 rounded-md "></div>
+                    <div className="border-2 border-gray-700 h-96 m-7 rounded-md text-white overflow-y-auto">
+                        {messages.map((msg,index)=>(
+                            <div key={index} className={`flex ${msg.name ===username ? 'justify-end':'justify-start'}`}>
+                                <div className="bg-white rounded-md inline-block max-w-xs break-words p-2 m-1 text-black">{msg.name}: {msg.message}</div>
+                            </div>
+                        ))}
+                        <div ref={endMessageRef}></div>
+                    </div>
                     <div className="m-7 flex justify-between">
                         <input type="text" className="w-3/4 h-10 rounded-sm bg-black border-2 border-gray-700 text-white p-2" ref={messageRef} style={{ caretColor: '#FFFFFF' }} placeholder="Type a message..."/>
                         <button className="bg-white h-10 w-28 rounded-sm" onClick={sendMessage}>Send</button>

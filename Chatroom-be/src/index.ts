@@ -32,7 +32,10 @@ wss.on("connection",(socket)=>{
         allSockets = allSockets.filter((user)=>user.socket!==socket);
         console.log(userRemoved+" has left")
         for(let user of allSockets){
-            user.socket.send(userRemoved+" has left")
+            user.socket.send(JSON.stringify({
+                name:userRemoved,
+                message:"has left"
+            }))
         }
     })
 
@@ -52,7 +55,6 @@ wss.on("connection",(socket)=>{
 
         if(!validationResult.success){
             console.log("Invalid inputs");
-            socket.send("Message violates the defined structure");
             socket.close();
             return
         }
@@ -75,7 +77,10 @@ wss.on("connection",(socket)=>{
 
             for(let i=0;i<allSockets.length;i++){
                 if(allSockets[i].roomid === currentuserroom){
-                    allSockets[i].socket.send(currentusername+":"+parsedMessage.payload.message)
+                    allSockets[i].socket.send(JSON.stringify({
+                        name:currentusername,
+                        message:parsedMessage.payload.message
+                    }))
                 }
             }
         }
