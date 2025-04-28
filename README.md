@@ -28,7 +28,7 @@ Unlike traditional HTTP polling, WebSockets enable **instant, bidirectional comm
 
 ## 🔥Live Demo
 
--  [Click here to try the Chat App! 🚀](https://chat-room-hemanth.netlify.app/)
+-  [Click here to try the Chat App! 🚀](https://chat-room-ten-pi.vercel.app/)
 
 ---
 
