@@ -147,7 +147,7 @@ const Landing = () => {
                 type="text"
                 className="bg-black border-2 border-gray-700 rounded h-10 w-full pl-2 text-white"
                 ref={roomidRef}
-                placeholder="Enter Your Room Number"
+                placeholder="Enter Your Room Code"
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
