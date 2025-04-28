@@ -2,7 +2,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import {z} from "zod";
 
 
-const wss = new WebSocketServer({port:8000});
+const wss = new WebSocketServer({ port: Number(process.env.PORT) || 8000 });
 
 interface User{
     name: string
