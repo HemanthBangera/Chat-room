@@ -36,7 +36,7 @@ Unlike traditional HTTP polling, WebSockets enable **instant, bidirectional comm
 
 | Frontend | Backend | Real-time | Styling |
 |:--------:|:-------:|:---------:|:-------:|
-| React.js + TypeScript | Node.js (Express) | WebSockets (Socket.IO, native ws) | Tailwind CSS |
+| React.js + TypeScript | Node.js (Express) | WebSockets (native ws) | Tailwind CSS |
 
 ---
 
@@ -117,6 +117,6 @@ Contributions are always welcome!
 - 📧 Email: **hemanthbangera843@gmail.com**
 
 ---
-> Made with ❤️ using **React**, **Node.js**, **TypeScript**, **Tailwind CSS**, and **Socket.IO**.
+> Made with ❤️ using **React**, **Node.js**, **TypeScript**, **Tailwind CSS**, and **Native WebSocket**.
 
 ---
