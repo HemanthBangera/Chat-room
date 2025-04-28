@@ -95,8 +95,7 @@ npm run dev
 
 | Create Room | Join Room | Chat Room |
 |:-----------:|:---------:|:---------:|
-| ![Create Room](https://github.com/user-attachments/assets/c3c20011-2839-4c85-8e98-aeb0a77c857c) | ![Join Room](https://github.com/user-attachments/assets/6304d637-34d8-4850-8715-8c96b7e25ebf) | ![Chat Room](![image](https://github.com/user-attachments/assets/25c40a9c-0538-4c08-84e6-f98651c4ca87)
-) |
+| ![Create Room](https://github.com/user-attachments/assets/c3c20011-2839-4c85-8e98-aeb0a77c857c) | ![Join Room](https://github.com/user-attachments/assets/6304d637-34d8-4850-8715-8c96b7e25ebf) | ![Chat Room](https://github.com/user-attachments/assets/b307a97a-cf66-4304-b22b-942c5e60beb9) |
 
 ---
 
