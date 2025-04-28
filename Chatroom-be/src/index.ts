@@ -1,9 +1,11 @@
 import { WebSocketServer, WebSocket } from "ws";
 import {z} from "zod";
+import dotenv from 'dotenv';
+dotenv.config();
 
 
-const wss = new WebSocketServer({ port: Number(process.env.PORT) || 8000 });
-
+const port = process.env.PORT || 8000;  
+const wss = new WebSocketServer({ port: Number(port) });
 interface User{
     name: string
     roomid : string,
