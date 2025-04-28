@@ -5,7 +5,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/HemanthBangera/Chat-room?style=social)](https://github.com/HemanthBangera/Chat-room/stargazers) 
 [![GitHub forks](https://img.shields.io/github/forks/HemanthBangera/Chat-room?style=social)](https://github.com/HemanthBangera/Chat-room/network/members) 
 [![GitHub issues](https://img.shields.io/github/issues/HemanthBangera/Chat-room)](https://github.com/HemanthBangera/Chat-room/issues)
-
+![Views Badge](https://komarev.com/ghpvc/?username=HemanthBangera&color=blue)
 ---
 
 ## 📄 Overview
@@ -14,6 +14,7 @@ This is a **real-time chat application** that allows users to create temporary c
 Unlike traditional HTTP polling, WebSockets enable **instant, bidirectional communication**, making your conversations smoother and faster!
 
 ---
+
 ## ✨ Key Features
 
 - 🔥 **Real-time Communication:** Instant message delivery using WebSocket technology.
@@ -24,13 +25,21 @@ Unlike traditional HTTP polling, WebSockets enable **instant, bidirectional comm
 - 🖥️ **Simple & Clean UI:** A straightforward interface for an enhanced chat experience.
 
 ---
-## ⚙️ Tech Stack
 
-| Frontend | Backend | Real-time |
-|:--------:|:-------:|:---------:|
-| React.js | Node.js (Express) | WebSockets (Socket.IO) |
+## 🔥Live Demo
+
+-  [Click here to try the Chat App! 🚀](https://chat-room-hemanth.netlify.app/)
 
 ---
+
+## ⚙️ Tech Stack
+
+| Frontend | Backend | Real-time | Styling |
+|:--------:|:-------:|:---------:|:-------:|
+| React.js + TypeScript | Node.js (Express) | WebSockets (Socket.IO, native ws) | Tailwind CSS |
+
+---
+
 ## 🎯 How It Works
 
 1. Create a new room ➡️ get a **unique Room Code** (example: `ASD123`).
@@ -40,6 +49,7 @@ Unlike traditional HTTP polling, WebSockets enable **instant, bidirectional comm
 5. When all users disconnect, the room **automatically closes**.
 
 ---
+
 ## 🛠️ Installation & Setup
 
 Follow these steps to run the application locally:
@@ -64,6 +74,7 @@ npm run dev
 ```
 
 ---
+
 ## 🎮 Usage Guide
 
 1. Launch the application in your browser.
@@ -73,7 +84,6 @@ npm run dev
 5. Start chatting! 🚀
 
 ---
-
 ## ⚡ Advantages of Using WebSockets
 
 - **Full-Duplex:** Simultaneous two-way communication.
@@ -81,15 +91,11 @@ npm run dev
 - **Lower Overhead:** More efficient real-time data transfer.
 
 ---
-
 ## 🌟 Screenshots
 
 | Create Room | Join Room | Chat Room |
 |:-----------:|:---------:|:---------:|
-| ![Create Room](![image](https://github.com/user-attachments/assets/c3c20011-2839-4c85-8e98-aeb0a77c857c)
-) | ![Join Room](![image](https://github.com/user-attachments/assets/6304d637-34d8-4850-8715-8c96b7e25ebf)
-) | ![Chat Room](![image](![image](https://github.com/user-attachments/assets/453cee27-30e1-45a6-a73b-41d2c8b41527)
-) |
+| ![Create Room](https://github.com/user-attachments/assets/c3c20011-2839-4c85-8e98-aeb0a77c857c) | ![Join Room](https://github.com/user-attachments/assets/6304d637-34d8-4850-8715-8c96b7e25ebf) | ![Chat Room](https://github.com/user-attachments/assets/453cee27-30e1-45a6-a73b-41d2c8b41527) |
 
 ---
 
@@ -111,7 +117,6 @@ Contributions are always welcome!
 - 📧 Email: **hemanthbangera843@gmail.com**
 
 ---
-
-> Made with ❤️ using **React**, **Node.js**, and **Socket.IO**.
+> Made with ❤️ using **React**, **Node.js**, **TypeScript**, **Tailwind CSS**, and **Socket.IO**.
 
 ---
