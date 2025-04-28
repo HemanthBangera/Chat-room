@@ -1,16 +1,16 @@
-# Use official Node.js LTS version as the base image
+# Use official Node.js image as the base image
 FROM node:18
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json
+# Copy package.json and package-lock.json (if it exists) for installing dependencies
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy all the project files into the container
+# Copy all project files into the container
 COPY . .
 
 # Build the TypeScript files

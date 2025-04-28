@@ -67,7 +67,7 @@ const Landing = () => {
   }
 
   function initializeSocketConnection() {
-    socketRef.current = new WebSocket("ws://localhost:8000");
+    socketRef.current = new WebSocket("https://chatroom-backend-production-9623.up.railway.app");
     console.log("attempting to connect to the websocket server");
     socketRef.current.onopen = () => {
       console.log("Connected to the websocket server");
