@@ -1,7 +1,8 @@
 # Real Time Chat Application
 
 ![image](https://github.com/user-attachments/assets/16c47435-44e1-4cea-8379-3fc046a0007f)
-![image](https://github.com/user-attachments/assets/18c56035-c415-487c-a3e0-3fdbb902b811)
+![image](https://github.com/user-attachments/assets/523fcb7c-ef27-49f8-acbf-55cbc713884d)
+
 
 
 
@@ -43,22 +44,26 @@ This application utilizes WebSockets, which provides several advantages over tra
 
 1.  Clone the repository:
     ```bash
-    git clone <your_repository_link>
+    git clone https://github.com/HemanthBangera/Chat-room.git
     ```
-2.  Navigate to the project directory:
+2.  Navigate to the backend project directory (Chatroom-be):
     ```bash
-    cd your_project_directory
+    cd Chatroom-be
     ```
-3.  Install the necessary dependencies (e.g., using npm, pip, etc.):
+3.  Install the necessary dependencies:
     ```bash
-    npm install  # or pip install -r requirements.txt
-    ```
-4.  Configure any environment variables (if required).
-5.  Run the application:
-    ```bash
-    npm start  # or python manage.py runserver
+    npm install
     ```
 
+4.  Run the application:
+    ```bash
+    npm run dev
+    ```
+5. Navigate to the frontend project directory (Chatroom-fe):
+   ```bash
+   cd Chatroom-fe
+   ```
+   
 ## Usage
 
 1.  Open the application in your web browser.
@@ -70,8 +75,6 @@ This application utilizes WebSockets, which provides several advantages over tra
 
 ## Contributing
 
-*(If you welcome contributions, explain how others can contribute to your project. For example:)*
-
 If you'd like to contribute to this project, please follow these guidelines:
 
 1.  Fork the repository.
@@ -80,16 +83,9 @@ If you'd like to contribute to this project, please follow these guidelines:
 4.  Push your changes to your fork.
 5.  Submit a pull request with a clear description of your changes.
 
-## License
-
-*(Specify the license under which your project is distributed. For example:)*
-
-This project is licensed under the [MIT License](link_to_your_license_file).
-
 ## Support
 
-If you encounter any issues or have any questions, please feel free to [open an issue](link_to_your_issues_page) on GitHub or contact me directly at [your_email@example.com].
+If you encounter any issues or have any questions, please feel free to [open an issue]](https://github.com/HemanthBangera/Chat-room/issues) on GitHub or contact me directly at hemanthbangera843@gmail.com.
 
 ---
 
-**Note:** Please replace the placeholder links (e.g., `link_to_your_screenshot_here.png`, `<your_repository_link>`, `link_to_your_license_file`, `link_to_your_issues_page`, `your_email@example.com`) with the actual links relevant to your project. Also, make sure to provide accurate installation and usage instructions based on your specific implementation.
