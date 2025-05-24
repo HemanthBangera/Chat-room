@@ -1,8 +1,14 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const ws_1 = require("ws");
 const zod_1 = require("zod");
-const wss = new ws_1.WebSocketServer({ port: 8000 });
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const port = process.env.PORT || 8000;
+const wss = new ws_1.WebSocketServer({ port: Number(port) });
 const MessageParsed = zod_1.z.object({
     type: zod_1.z.enum(["join", "chat"]),
     payload: zod_1.z.object({
