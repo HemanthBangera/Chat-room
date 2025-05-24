@@ -2,10 +2,7 @@
 
 ![Real Time Chat Application Banner](https://github.com/user-attachments/assets/16c47435-44e1-4cea-8379-3fc046a0007f)
 
-[![GitHub stars](https://img.shields.io/github/stars/HemanthBangera/Chat-room?style=social)](https://github.com/HemanthBangera/Chat-room/stargazers) 
-[![GitHub forks](https://img.shields.io/github/forks/HemanthBangera/Chat-room?style=social)](https://github.com/HemanthBangera/Chat-room/network/members) 
-[![GitHub issues](https://img.shields.io/github/issues/HemanthBangera/Chat-room)](https://github.com/HemanthBangera/Chat-room/issues)
-![Views Badge](https://komarev.com/ghpvc/?username=HemanthBangera&color=blue)
+
 ---
 
 ## 📄 Overview
