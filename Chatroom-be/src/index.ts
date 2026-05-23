@@ -2,7 +2,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import { z } from "zod";
 import dotenv from 'dotenv';
 dotenv.config();
-
+// Demo change to show professor the automated webhook trigger
 const port = process.env.PORT || 8000;  
 const wss = new WebSocketServer({ port: Number(port) });
 interface User {
@@ -52,7 +52,6 @@ wss.on("connection", (socket) => {
 
         try {
             // 3. Changed @ts-ignore to @ts-expect-error as requested by the linter compiler rules
-            // @ts-expect-error message can be parsed safely at runtime
             tobeparsedMessage = JSON.parse(message);
         }
         catch (error) {
