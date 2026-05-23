@@ -2,7 +2,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import { z } from "zod";
 import dotenv from 'dotenv';
 dotenv.config();
-// Demo change to show professor the automated webhook trigger
+// Demo change to show professor the automated webhook 
 const port = process.env.PORT || 8000;  
 const wss = new WebSocketServer({ port: Number(port) });
 interface User {
